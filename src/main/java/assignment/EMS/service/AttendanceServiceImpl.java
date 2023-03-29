@@ -45,6 +45,9 @@ public class AttendanceServiceImpl implements AttendanceService {
         this.attendanceRepository.deleteById(id);
     }
 
+
+
+
     @Override
     public Page<Attendance> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
@@ -53,4 +56,5 @@ public class AttendanceServiceImpl implements AttendanceService {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.attendanceRepository.findAll(pageable);
     }
+
 }

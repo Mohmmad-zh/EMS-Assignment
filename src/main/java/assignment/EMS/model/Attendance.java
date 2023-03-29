@@ -12,7 +12,7 @@ public class Attendance {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
     @Column(name = "check_in_time")
@@ -24,16 +24,16 @@ public class Attendance {
     @Column(name = "justification")
     private String justification;
 
-    public Attendance(Employee employee, Timestamp checkInTime) {
-        this.employee = employee;
-        this.checkInTime = checkInTime;
-    }
+
 
     public Attendance() {
 
     }
 
-    public void checkOut(Timestamp checkOutTime, String justification) {
+    public Attendance(long id, Employee employee, Timestamp checkInTime, Timestamp checkOutTime, String justification) {
+        this.id = id;
+        this.employee = employee;
+        this.checkInTime = checkInTime;
         this.checkOutTime = checkOutTime;
         this.justification = justification;
     }
@@ -77,5 +77,4 @@ public class Attendance {
     public void setJustification(String justification) {
         this.justification = justification;
     }
-
 }

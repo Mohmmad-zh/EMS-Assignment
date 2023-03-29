@@ -1,6 +1,7 @@
 package assignment.EMS.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 
@@ -12,5 +13,6 @@ public interface AttendanceService {
     void saveAttendance(Attendance attendance);
     Attendance getAttendanceById(long id);
     void deleteAttendanceById(long id);
+
     Page<Attendance> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }

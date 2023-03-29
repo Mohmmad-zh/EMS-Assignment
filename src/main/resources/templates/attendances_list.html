@@ -90,13 +90,10 @@
     <thead>
     <tr>
       <th>
-        <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
-          Employee First Name</a>
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=employee&sortDir=' + ${reverseSortDir}}">
+          Employee ID</a>
       </th>
-      <th>
-        <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
-          Employee Last Name</a>
-      </th>
+
       <th>
         <a th:href="@{'/page/' + ${currentPage} + '?sortField=checkInTime&sortDir=' + ${reverseSortDir}}">
           Check In Time</a>
@@ -105,15 +102,19 @@
         <a th:href="@{'/page/' + ${currentPage} + '?sortField=checkOutTime&sortDir=' + ${reverseSortDir}}">
           Check Out Time</a>
       </th>
+      <th>
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=justification&sortDir=' + ${reverseSortDir}}">
+          Justifications</a>
+      </th>
       <th> Actions </th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="attendance : ${listAttendance}">
-      <td th:text="${attendance.firstName}"></td>
-      <td th:text="${attendance.lastName}"></td>
+    <tr th:each="attendance : ${listAttendances}">
+      <td th:text="${attendance.employee}"></td>
       <td th:text="${attendance.checkInTime}"></td>
       <td th:text="${attendance.checkOutTime}"></td>
+      <td th:text="${attendance.justification}"></td>
       <td>
         <a th:href="@{/showAttendanceFormForUpdate/{id}(id=${attendance.id})}" class="btn btn-primary">Update</a>
         <a th:href="@{/deleteAttendance/{id}(id=${attendance.id})}" class="btn btn-danger">Delete</a>

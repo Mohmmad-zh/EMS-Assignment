@@ -20,7 +20,8 @@ public class EmployeeController {
 	// display list of employees
 	@GetMapping("/employees")
 	public String viewHomePage(Model model) {
-		return findPaginated(1, "firstName", "asc", model);
+		return
+				findPaginated(1, "firstName", "asc", model);
 	}
 
 	@GetMapping("/employee/page/{pageNo}")

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
-    @Query(value = "SELECT * FROM attendance WHERE CONCAT(first_name, ' ', last_name, ' ', check_in_time,' ', check_out_time, ' ', justification, ' ', employee_id) LIKE %?1%",
+    @Query(value = "SELECT * FROM attendance WHERE CONCAT(employee_id, ' ', check_in_time,' ', check_out_time, ' ', justification) LIKE %:keyword% ",
             nativeQuery = true)
     Page<Employee> findAll(String keyword, Pageable pageable);
 

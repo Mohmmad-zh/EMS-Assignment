@@ -29,7 +29,27 @@ public class AttendanceController {
     // display list of attendance
     @GetMapping("/attendance")
     public String viewHomePage(Model model) {
-        return findPaginated(1, 5, "checkInTime", "asc", model);
+        return findPaginated(1, 5, "employee", "asc", model);
+    }
+
+    @GetMapping("/attendance/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
+                                @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
+                                @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDir") String sortDir,
+                                Model model) {
+        Page<Attendance> page = attendanceService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<Attendance> listAttendance = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("listAttendances", listAttendance);
+
+        return "attendances_list";
     }
 
     @GetMapping("/showNewAttendanceForm")
@@ -69,7 +89,7 @@ public class AttendanceController {
         Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
         attendance.setCheckInTime(timestamp);
         attendanceService.saveAttendance(attendance);
-        return "redirect:/";
+        return "redirect:/attendance";
     }
 
 
@@ -96,24 +116,4 @@ public class AttendanceController {
         return "redirect:/";
     }
 
-
-    @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
-                                @RequestParam("pageSize") int pageSize,
-                                @RequestParam("sortField") String sortField,
-                                @RequestParam("sortDir") String sortDir,
-                                Model model) {
-        Page<Attendance> page = attendanceService.findPaginated(pageNo, pageSize, sortField, sortDir);
-        List<Attendance> listAttendance = page.getContent();
-
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-        model.addAttribute("listAttendances", listAttendance);
-
-        return "attendances_list";
-    }
 }
