@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>New Attendance - Employee Management System</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <style>
+		body {
+			background-color: #f7f7f7;
+			color: #333;
+			font-family: Arial, sans-serif;
+		}
+		h1 {
+			font-size: 2rem;
+			margin-top: 2rem;
+		}
+		.container {
+			margin-top: 2rem;
+			padding: 2rem;
+			background-color: #fff;
+			border-radius: 0.25rem;
+			box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+		}
+		.form-group {
+			margin-bottom: 1rem;
+		}
+		.btn-primary {
+			background-color: #007bff;
+			border-color: #007bff;
+			font-weight: 600;
+		}
+		.btn-primary:hover {
+			background-color: #0069d9;
+			border-color: #0062cc;
+		}
+		.btn-danger {
+			background-color: #dc3545;
+			border-color: #dc3545;
+			font-weight: 600;
+		}
+		.btn-danger:hover {
+			background-color: #c82333;
+			border-color: #bd2130;
+		}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Employee Management System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/employees">Employees</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Attendance</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <h1>New Attendance</h1>
+  <form action="/saveAttendance" method="post">
+    <div class="form-group">
+      <label>Check In / Check Out</label>
+    </div>
+    <div class="form-group">
+      <input type="hidden" name="employeeId" th:value="${employeeId}" />
+      <button type="submit" class="btn btn-success">Check In</button>
+    </div>
+  </form>
+</div>
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNSB6t" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JM9HubE0n/6SA" crossorigin="anonymous"></script>
+
+</body>
+</html>

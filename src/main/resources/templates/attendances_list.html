@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Attendance List</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <style>
+		body {
+			background-color: #f7f7f7;
+			color: #333;
+			font-family: Arial, sans-serif;
+		}
+		h1 {
+			font-size: 2rem;
+			margin-top: 2rem;
+		}
+		.container {
+			margin-top: 2rem;
+			padding: 2rem;
+			background-color: #fff;
+			border-radius: 0.25rem;
+			box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+		}
+		.btn-primary {
+			background-color: #007bff;
+			border-color: #007bff;
+			font-weight: 600;
+		}
+		.btn-primary:hover {
+			background-color: #0069d9;
+			border-color: #0062cc;
+		}
+		.btn-danger {
+			background-color: #dc3545;
+			border-color: #dc3545;
+			font-weight: 600;
+		}
+		.btn-danger:hover {
+			background-color: #c82333;
+			border-color: #bd2130;
+		}
+		table {
+			width: 100%;
+			margin-top: 2rem;
+			border-collapse: collapse;
+		}
+		th, td {
+			padding: 1rem;
+			text-align: left;
+			border-bottom: 1px solid #dee2e6;
+		}
+		th {
+			background-color: #e9ecef;
+			font-weight: 600;
+		}
+		tr:hover {
+			background-color: #f8f9fa;
+		}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Employees Management System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/employees">Employees</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/attendance">Attendance</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <h1>Attendance List</h1>
+
+  <div class="btn-group mb-3">
+    <a href="/attendance" class="btn btn-primary">View Attendance</a>
+    <a href="/employees" class="btn btn-primary">View Employees</a>
+  </div>
+  <table border="1" class = "table table-striped table-responsive-md">
+    <thead>
+    <tr>
+      <th>
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
+          Employee First Name</a>
+      </th>
+      <th>
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
+          Employee Last Name</a>
+      </th>
+      <th>
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=checkInTime&sortDir=' + ${reverseSortDir}}">
+          Check In Time</a>
+      </th>
+      <th>
+        <a th:href="@{'/page/' + ${currentPage} + '?sortField=checkOutTime&sortDir=' + ${reverseSortDir}}">
+          Check Out Time</a>
+      </th>
+      <th> Actions </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="attendance : ${listAttendance}">
+      <td th:text="${attendance.firstName}"></td>
+      <td th:text="${attendance.lastName}"></td>
+      <td th:text="${attendance.checkInTime}"></td>
+      <td th:text="${attendance.checkOutTime}"></td>
+      <td>
+        <a th:href="@{/showAttendanceFormForUpdate/{id}(id=${attendance.id})}" class="btn btn-primary">Update</a>
+        <a th:href="@{/deleteAttendance/{id}(id=${attendance.id})}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWhYoZ+q3JFaSpiNEUVI/KJoWYXQ0FQReNbUV3" crossorigin="anonymous"></script>
+</body>
+</html>
+

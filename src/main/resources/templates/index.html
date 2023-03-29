@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>EMS</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<style>
+		body {
+			background-color: #f7f7f7;
+			color: #333;
+			font-family: Arial, sans-serif;
+		}
+		h1 {
+			font-size: 2rem;
+			margin-top: 2rem;
+		}
+		.container {
+			margin-top: 2rem;
+			padding: 2rem;
+			background-color: #fff;
+			border-radius: 0.25rem;
+			box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+		}
+		.btn-primary {
+			background-color: #007bff;
+			border-color: #007bff;
+			font-weight: 600;
+		}
+		.btn-primary:hover {
+			background-color: #0069d9;
+			border-color: #0062cc;
+		}
+		.btn-danger {
+			background-color: #dc3545;
+			border-color: #dc3545;
+			font-weight: 600;
+		}
+		.btn-danger:hover {
+			background-color: #c82333;
+			border-color: #bd2130;
+		}
+		table {
+			width: 100%;
+			margin-top: 2rem;
+			border-collapse: collapse;
+		}
+		th, td {
+			padding: 1rem;
+			text-align: left;
+			border-bottom: 1px solid #dee2e6;
+		}
+		th {
+			background-color: #e9ecef;
+			font-weight: 600;
+		}
+		tr:hover {
+			background-color: #f8f9fa;
+		}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#">EMS</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item active">
+				<a class="nav-link" href="/">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/employees">Employees</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/attendance">Attendance</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<div class="container">
+	<h1>Employees Management System</h1>
+
+	<div class="btn-group mb-3">
+		<a th:href = "@{/showNewEmployeeForm}" class="btn btn-primary">Add Employee</a>
+		<a th:href="@{/attendance}" class="btn btn-secondary">View Attendance</a>
+	</div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWhYoZ+q3JFaSpiNEUVI/KJoWYXQ0FQReNbUV3" crossorigin="anonymous"></script>
+</body>
+</html>
+
