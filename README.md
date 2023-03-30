@@ -2,7 +2,7 @@
 
 *Employee Attendance System*
 
-The Employee Attendance System is a web-based application that allows managers to track and monitor employee attendance. The application provides an interface for employees to check in and check out, and a dashboard for managers to view attendance records and generate reports.
+The Employee Attendance System is a web-based application that allows managers to track and monitor employee attendance. The application provides an interface for employees to check in and check out, and a dashboard for managers to view attendance records.
 
 *Technology Stack*
 
