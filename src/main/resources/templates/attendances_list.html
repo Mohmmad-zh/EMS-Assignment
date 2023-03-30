@@ -105,12 +105,20 @@
          Check In Time
       </th>
       <th>
+        Checked-In Late
+      </th>
+      <th>
        Check Out Time
+      </th>
+      <th>
+        Checked-Out Early
       </th>
       <th>
        Justifications
       </th>
-      <th> Actions </th>
+      <th>
+        Actions
+      </th>
     </tr>
     </thead>
     <tbody>
@@ -120,8 +128,10 @@
       <td th:text="${attendance.employee.firstName}"></td>
       <td th:text="${attendance.employee.lastName}"></td>
       <td th:text="${#dates.format(attendance.checkInTime, 'dd-MM-yyyy HH:mm:ss')}"></td>
+      <td th:text="${attendance.lateCheckIn}"></td>
       <td th:if="${attendance.checkOutTime != null}" th:text="${#dates.format(attendance.checkOutTime, 'dd-MM-yyyy HH:mm:ss')}"></td>
       <td th:if="${attendance.checkOutTime == null}">Not Checked Out Yet</td>
+      <td th:text="${attendance.earlyCheckOut}"></td>
       <td th:text="${attendance.justification}"></td>
       <td>
         <input type="hidden" name="attendanceId" th:value="${attendance.id}" />
