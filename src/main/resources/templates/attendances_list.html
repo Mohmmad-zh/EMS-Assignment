@@ -93,21 +93,22 @@
     <thead>
     <tr>
       <th>
-        <a th:href="@{'/page/' + ${currentPage} + '?sortField=employee&sortDir=' + ${reverseSortDir}}">
-          Employee ID</a>
-      </th>
-
-      <th>
-        <a th:href="@{'/page/' + ${currentPage} + '?sortField=checkInTime&sortDir=' + ${reverseSortDir}}">
-          Check In Time</a>
+          Employee ID
       </th>
       <th>
-        <a th:href="@{'/page/' + ${currentPage} + '?sortField=checkOutTime&sortDir=' + ${reverseSortDir}}">
-          Check Out Time</a>
+        Employee First Name
       </th>
       <th>
-        <a th:href="@{'/page/' + ${currentPage} + '?sortField=justification&sortDir=' + ${reverseSortDir}}">
-          Justifications</a>
+        Employee Last Name
+      </th>
+      <th>
+         Check In Time
+      </th>
+      <th>
+       Check Out Time
+      </th>
+      <th>
+       Justifications
       </th>
       <th> Actions </th>
     </tr>
@@ -115,7 +116,9 @@
     <tbody>
     <form action="/checkout" method="post">
     <tr th:each="attendance : ${listAttendances}">
-      <td th:text="${attendance.employee}"></td>
+      <td th:text="${attendance.employee.id}"></td>
+      <td th:text="${attendance.employee.firstName}"></td>
+      <td th:text="${attendance.employee.lastName}"></td>
       <td th:text="${#dates.format(attendance.checkInTime, 'dd-MM-yyyy HH:mm:ss')}"></td>
       <td th:if="${attendance.checkOutTime != null}" th:text="${#dates.format(attendance.checkOutTime, 'dd-MM-yyyy HH:mm:ss')}"></td>
       <td th:if="${attendance.checkOutTime == null}">Not Checked Out Yet</td>
