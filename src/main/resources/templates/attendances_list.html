@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:util="urn:thymeleaf-util">
 <head>
   <meta charset="UTF-8">
   <title>Attendance List</title>
@@ -82,9 +82,11 @@
 <div class="container">
   <h1>Attendance List</h1>
 
-  <div class="btn-group mb-3">
+  <div class="btn-group mb-3" >
     <a href="/attendance" class="btn btn-primary">View Attendance</a>
-    <a href="/employees" class="btn btn-primary">View Employees</a>
+  </div>
+  <div class="btn-group mb-3" >
+    <a href="/employees" class="btn btn-secondary">View Employees</a>
   </div>
   <table border="1" class = "table table-striped table-responsive-md">
     <thead>
@@ -110,16 +112,27 @@
     </tr>
     </thead>
     <tbody>
+    <form action="/checkout" method="post">
     <tr th:each="attendance : ${listAttendances}">
       <td th:text="${attendance.employee}"></td>
-      <td th:text="${attendance.checkInTime}"></td>
-      <td th:text="${attendance.checkOutTime}"></td>
+      <td th:text="${#dates.format(attendance.checkInTime, 'dd-MM-yyyy HH:mm:ss')}"></td>
+      <td th:if="${attendance.checkOutTime != null}" th:text="${#dates.format(attendance.checkOutTime, 'dd-MM-yyyy HH:mm:ss')}"></td>
+      <td th:if="${attendance.checkOutTime == null}">Not Checked Out Yet</td>
       <td th:text="${attendance.justification}"></td>
       <td>
-        <a th:href="@{/showAttendanceFormForUpdate/{id}(id=${attendance.id})}" class="btn btn-primary">Update</a>
-        <a th:href="@{/deleteAttendance/{id}(id=${attendance.id})}" class="btn btn-danger">Delete</a>
+        <input type="hidden" name="attendanceId" th:value="${attendance.id}" />
+        <button type="submit" class="btn btn-sm btn-success">Check Out</button>
+        <a th:href="@{/showAttendanceFormForUpdate/{id}(id=${attendance.id})}" class="btn btn-sm btn-primary">
+          Update
+        </a>
+        <a th:href="@{/deleteAttendance/{id}(id=${attendance.id})}" class="btn btn-sm btn-danger">
+          Delete
+        </a>
       </td>
+
+
     </tr>
+    </form>
 
     </tbody>
   </table>

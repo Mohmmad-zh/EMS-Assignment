@@ -1,9 +1,12 @@
 package assignment.EMS.service;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import assignment.EMS.model.Attendance;
+import assignment.EMS.model.Employee;
 import assignment.EMS.repository.AttendanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,6 +58,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.attendanceRepository.findAll(pageable);
+    }
+
+    @Override
+    public Attendance getAttendanceByEmployeeAndDate(Employee employee, LocalDate date) {
+        return attendanceRepository.findByEmployeeAndCheckInTime(employee, Timestamp.valueOf(date.atStartOfDay()));
     }
 
 }

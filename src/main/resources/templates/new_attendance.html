@@ -74,6 +74,9 @@
     <div class="form-group">
       <input type="hidden" name="employeeId" th:value="${employeeId}" />
       <button type="submit" class="btn btn-success">Check In</button>
+
+      <input type="hidden" name="attendanceId" th:value="${attendance.id}" />
+      <button type="submit" class="btn btn-danger">Check Out</button>
     </div>
   </form>
 </div>

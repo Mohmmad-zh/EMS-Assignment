@@ -88,11 +88,32 @@ public class AttendanceController {
         attendance.setEmployee(employee);
         Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
         attendance.setCheckInTime(timestamp);
-        attendanceService.saveAttendance(attendance);
+
+        // check if an attendance record already exists for the employee on the current date
+        Attendance existingAttendance = attendanceService.getAttendanceByEmployeeAndDate(employee, timestamp.toLocalDateTime().toLocalDate());
+        if (existingAttendance != null) {
+            // if an attendance record already exists, update the existing record with the new check-in time
+            existingAttendance.setCheckInTime(timestamp);
+            attendanceService.saveAttendance(existingAttendance);
+        } else {
+            attendanceService.saveAttendance(attendance);
+        }
+
         return "redirect:/attendance";
     }
 
 
+    // Update attendance record for an employee when they check out
+    @PostMapping("/checkout")
+    public String checkout(@RequestParam("attendanceId") long attendanceId) {
+        Attendance attendance = attendanceService.getAttendanceById(attendanceId);
+        if (attendance != null) {
+            Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+            attendance.setCheckOutTime(timestamp);
+            attendanceService.saveAttendance(attendance);
+        }
+        return "redirect:/attendance";
+    }
 
 
 

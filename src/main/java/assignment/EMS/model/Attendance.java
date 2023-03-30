@@ -24,8 +24,6 @@ public class Attendance {
     @Column(name = "justification")
     private String justification;
 
-
-
     public Attendance() {
 
     }
@@ -76,5 +74,9 @@ public class Attendance {
 
     public void setJustification(String justification) {
         this.justification = justification;
+    }
+
+    public void updateCheckOutTime(Timestamp checkOutTime) {
+        this.checkOutTime = checkOutTime;
     }
 }
