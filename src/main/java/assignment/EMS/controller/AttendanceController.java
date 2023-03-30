@@ -134,7 +134,7 @@ public class AttendanceController {
 
         // call delete attendance method
         this.attendanceService.deleteAttendanceById(id);
-        return "redirect:/";
+        return "redirect:/attendance";
     }
 
 }
